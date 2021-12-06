@@ -10,7 +10,8 @@ fn main() {
                 .expect("Something went wrong reading the file");
 
 	let split = contents.trim().split("\n");
-
+	
+    // Could be done with a circular buffer, but I dont know how to do that
 	let mut number_of_seen_values = 0;
     let mut first_value = 0;
     let mut second_value = 0;
