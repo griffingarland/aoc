@@ -13,7 +13,7 @@ fn main() {
 	let split : Vec<String> = contents.trim().split("\n").map(|s| s.to_string()).collect();
 
     // Number of bits in each binary number
-	let mut bit_shift : i64 = pow(2i64, 11);
+	let mut bit_map : i64 = pow(2i64, 11);
 	let mut gamma : i64 = 0;
 	let mut epsilon : i64 = 0;
 
@@ -22,19 +22,19 @@ fn main() {
         let mut num_zeros = 0;
         for value in &split {
             let number : i64 = i64::from_str_radix(value.trim(), 2).unwrap();
-            if (number & bit_shift) > 0 {
+            if (number & bit_map) > 0 {
                 num_ones += 1;
             } else {
                 num_zeros += 1;
             }
         }
         if num_ones > num_zeros {
-            gamma = gamma | bit_shift;
+            gamma = gamma | bit_map;
         } else {
-            epsilon = epsilon | bit_shift;
+            epsilon = epsilon | bit_map;
         }
-        bit_shift = bit_shift >> 1;
-        if bit_shift == 0 {
+        bit_map = bit_map >> 1;
+        if bit_map == 0 {
             break;
         }
     }
