@@ -3,7 +3,7 @@ use num_traits::pow;
 
 fn main() {
     // Hardcoded so nobody can steal my answer >:(
-    let filename = "/home/griffin/src/aoc/aoc5/input";
+    let filename = "/home/griffin/src/aoc/day3/part1/input";
 
     println!("In file {}", filename);
 

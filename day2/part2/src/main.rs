@@ -2,7 +2,7 @@ use std::fs;
 
 fn main() {
 	// Hardcoded so nobody can steal my answer >:(
-    let filename = "/home/griffin/src/aoc/aoc3/input";
+    let filename = "/home/griffin/src/aoc/day2/part1/input";
 
     println!("In file {}", filename);
 
