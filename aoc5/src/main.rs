@@ -10,7 +10,7 @@ fn main() {
     let contents = fs::read_to_string(filename)
                 .expect("Something went wrong reading the file");
 
-	let split = contents.trim().split("\n");
+	let split : Vec<String> = contents.trim().split("\n").map(|s| s.to_string()).collect();
 
     // Number of bits in each binary number
 	let mut bit_shift : i64 = pow(2i64, 11);
@@ -18,10 +18,9 @@ fn main() {
 	let mut epsilon : i64 = 0;
 
     loop {
-        let split_clone = split.clone();
         let mut num_ones = 0;
         let mut num_zeros = 0;
-        for value in split_clone {
+        for value in &split {
             let number : i64 = i64::from_str_radix(value.trim(), 2).unwrap();
             if (number & bit_shift) > 0 {
                 num_ones += 1;
