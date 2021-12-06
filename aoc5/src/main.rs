@@ -2,7 +2,7 @@ use std::fs;
 use num_traits::pow;
 
 fn main() {
-	// Hardcoded so nobody can steal my answer >:(
+    // Hardcoded so nobody can steal my answer >:(
     let filename = "/home/griffin/src/aoc/aoc5/input";
 
     println!("In file {}", filename);
@@ -10,12 +10,12 @@ fn main() {
     let contents = fs::read_to_string(filename)
                 .expect("Something went wrong reading the file");
 
-	let split : Vec<String> = contents.trim().split("\n").map(|s| s.to_string()).collect();
+    let split : Vec<String> = contents.trim().split("\n").map(|s| s.to_string()).collect();
 
     // Number of bits in each binary number
-	let mut bit_map : i64 = pow(2i64, 11);
-	let mut gamma : i64 = 0;
-	let mut epsilon : i64 = 0;
+    let mut bit_map : i64 = pow(2i64, 11);
+    let mut gamma : i64 = 0;
+    let mut epsilon : i64 = 0;
 
     loop {
         let mut num_ones = 0;
@@ -38,5 +38,5 @@ fn main() {
             break;
         }
     }
-	println!("gamma={} epsilon={} multiplied={}", gamma, epsilon, gamma * epsilon);
+    println!("gamma={} epsilon={} multiplied={}", gamma, epsilon, gamma * epsilon);
 }
