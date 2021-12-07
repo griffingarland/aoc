@@ -50,67 +50,67 @@ struct Board {
 impl Board {
 
     pub fn insert_value(&mut self, value : i32) -> bool {
-		// Inserts a value into a board and then checks if bingo has been achieved
-		for column in 0..5 {
-			for row in 0..5 {
-				if value == self.rows[column][row].number {
-					self.rows[column][row].marked = true;
-				}
-			}
-		}
-		// Search columns for bingo
-		for row in self.rows {
-			let mut num_marked = 0;
-			for num in 0..5 {
-				if row[num].marked == true {
-					num_marked += 1;
-				}
-			}
-			if num_marked >= 5 {
-				println!("Column found");
-				return true;
-			}
-		}
-		// Search rows for bingo
-		for num in 0..5 {
-			let mut num_marked = 0;
-			for row in self.rows {
-				if row[num].marked == true {
-					num_marked += 1;
-				}
-			}
-			if num_marked >= 5 {
-				println!("Row found");
-				return true;
-			}
-		}
-		// No bingo :(
-		false
+        // Inserts a value into a board and then checks if bingo has been achieved
+        for column in 0..5 {
+            for row in 0..5 {
+                if value == self.rows[column][row].number {
+                    self.rows[column][row].marked = true;
+                }
+            }
+        }
+        // Search columns for bingo
+        for row in self.rows {
+            let mut num_marked = 0;
+            for num in 0..5 {
+                if row[num].marked == true {
+                    num_marked += 1;
+                }
+            }
+            if num_marked >= 5 {
+                println!("Column found");
+                return true;
+            }
+        }
+        // Search rows for bingo
+        for num in 0..5 {
+            let mut num_marked = 0;
+            for row in self.rows {
+                if row[num].marked == true {
+                    num_marked += 1;
+                }
+            }
+            if num_marked >= 5 {
+                println!("Row found");
+                return true;
+            }
+        }
+        // No bingo :(
+        false
     }
 
     pub fn calculate_score(&self, final_value : i32 ) -> i64 {
-		let mut sum = 0;
-		for row in self.rows {
-			for num in 0..5 {
-				if row[num].marked == false {
-					sum += row[num].number;	
-				}
-			}
-		}
-		let score : i64 = (sum * final_value).into();
-		println!("sum={} final_value={} score={}", sum, final_value, score);
-		score
+        let mut sum = 0;
+        for row in self.rows {
+            for num in 0..5 {
+                if row[num].marked == false {
+                    sum += row[num].number;    
+                }
+            }
+        }
+        let score : i64 = (sum * final_value).into();
+        println!("sum={} final_value={} score={}", sum, final_value, score);
+        score
     }
 
-	pub fn print(&self) {
-		for row in self.rows {
-			for num in 0..5 {
-				print!("({} {}) ", row[num].number, row[num].marked);
-			}
-			println!("");
-		}
-		println!("");
-	}
+    pub fn print(&self) {
+        for row in self.rows {
+            for num in 0..5 {
+                print!("({} {}) ", row[num].number, row[num].marked);
+            }
+            println!("");
+        }
+        println!("");
+    }
 }
 
 fn main() {
@@ -148,27 +148,27 @@ fn main() {
         }
     }
 
-	for board in &boards {
-		board.print();
-	}
+    for board in &boards {
+        board.print();
+    }
 
-	let mut bingo = false;
-	let mut answers : Vec<i64> = Vec::new();
-	for guess in guesses {
-		println!("Adding guess {}", guess);
-		for board in &mut boards {
-			let this_board_bingo = board.insert_value(guess);
-			if this_board_bingo == true {
-			    bingo = true;
-				println!("BINGO");
-				answers.push(board.calculate_score(guess));
-			}
-		}
-		if bingo {
-			break;
-		}
-	}
+    let mut bingo = false;
+    let mut answers : Vec<i64> = Vec::new();
+    for guess in guesses {
+        println!("Adding guess {}", guess);
+        for board in &mut boards {
+            let this_board_bingo = board.insert_value(guess);
+            if this_board_bingo == true {
+                bingo = true;
+                println!("BINGO");
+                answers.push(board.calculate_score(guess));
+            }
+        }
+        if bingo {
+            break;
+        }
+    }
 
-	println!("max_value={}", answers.iter().max().unwrap());
+    println!("max_value={}", answers.iter().max().unwrap());
 
 }
