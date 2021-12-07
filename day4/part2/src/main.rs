@@ -163,6 +163,7 @@ fn main() {
 		board.print();
 	}
 
+    // Add guesses to bingo boards until theres only 1 board remaining
     let num_boards = boards.len();
     let mut bingo_boards = 0;
 	for guess in &guesses {
@@ -179,6 +180,8 @@ fn main() {
         }
 	}
 
+    // Now that we have the last board, keep adding guesses until it bingos and then calculate the
+    // final score
 	for board in &mut boards {
 	    if board.bingo == false {
             for guess in &guesses {
